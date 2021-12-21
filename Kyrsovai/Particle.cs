@@ -38,7 +38,7 @@ namespace Kyrsovai
             float k = Math.Min(1f, Life / 100);
             // рассчитываем значение альфа канала в шкале от 0 до 255
             // по аналогии с RGB, он используется для задания прозрачности
-            int alpha = (int)(k * 255);
+            int alpha = (int)(k * 256);
             // создаем цвет из уже существующего, но привязываем к нему еще и значение  альфа канала
            
         var color = Color.FromArgb(alpha, Color.Black);

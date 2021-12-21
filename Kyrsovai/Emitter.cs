@@ -21,12 +21,12 @@ namespace Kyrsovai
         public int LifeMin = 20; // минимальное время жизни частицы
         public int LifeMax = 100; // максимальное время жизни частицы
         public int ParticlesPerTick; // количество частиц за один такт
-        public int Power = 125; //Диаметр окружности
+        public int Power = 100; //Диаметр окружности
         public float GravitationX = 0;
         public float GravitationY = 1; // пусть гравитация будет силой один пиксель за такт, нам хватит
-
-        public Color ColorFrom = Color.White; // начальный цвет частицы
-        public Color ColorTo = Color.FromArgb(0, Color.Black); // конечный цвет частиц
+        
+        public Color ColorFrom = Color.Red; // начальный цвет частицы
+        public Color ColorTo = Color.FromArgb(0, Color.White); // конечный цвет частиц
 
         // собственно список, пока пустой
         List<Particle> particles = new List<Particle>();
@@ -80,11 +80,8 @@ namespace Kyrsovai
                     }
                 }
                 else
-                {   //Гравитация
-
-                    /*particle.SpeedX += GravitationX;
-                    particle.SpeedY += GravitationY;
-                    */
+                {   
+                    
                     // это не трогаем
                     particle.X += particle.SpeedX;
                     particle.Y += particle.SpeedY;
@@ -96,6 +93,7 @@ namespace Kyrsovai
             // собственно пока не накопится критическая масса частиц
             while (particlesToCreate >= 1)
             {
+                
                 particlesToCreate -= 1;
                 var particle = CreateParticle();
                 ResetParticle(particle);

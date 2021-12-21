@@ -27,8 +27,8 @@ namespace Kyrsovai
                 Spreading = 10,
                 SpeedMin = 10,
                 SpeedMax = 10,
-                ColorFrom = Color.Gold,
-                ColorTo = Color.FromArgb(0, Color.Red),
+                ColorFrom = Color.Silver,
+                ColorTo = Color.FromArgb(0, Color.Black),
                 ParticlesPerTick = 10,
                 X = picDisplay.Width / 2,
                 Y = picDisplay.Height / 2,
@@ -51,18 +51,19 @@ namespace Kyrsovai
             picDisplay.Invalidate();
         }
         List<Particle> particles = new List<Particle>();
-
+        // Разброс частиц
         private void trackBar2_Scroll(object sender, EventArgs e)
         {
             rotatingEmitter.Spreading = tbSpreading.Value; //  разброс
-            
+            lblRaz.Text = $"{tbSpreading.Value}°"; // добавил вывод значения
         }
 
         // Размер окружности
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             rotatingEmitter.CircleRadius = tbPower.Value;
-            lblPower.Text = $"{tbPower.Value}R";
+            tbPow.Text = $"{tbPower.Value} R"; // добавил вывод значения
+            
         }
 
        
@@ -71,10 +72,23 @@ namespace Kyrsovai
         {
             rotatingEmitter.Speed = tbSpeed.Value;
         }
-
+        // Частицы за тик
         private void trackBar1_Scroll_1(object sender, EventArgs e)
+        {
+            rotatingEmitter.ParticlesPerTick = tbTick.Value;
+            
+        }
+
+        private void label3_Click(object sender, EventArgs e)
         {
 
         }
+
+        private void picDisplay_Click(object sender, EventArgs e)
+        {
+
+        }
+
+       
     }
 }

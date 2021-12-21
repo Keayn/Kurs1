@@ -26,7 +26,7 @@ namespace Kyrsovai
         public override void Render(Graphics g)
         {
             base.Render(g);
-
+            // рисуем окружность 
             g.DrawEllipse(
                 new Pen(Color.Red),
                 Center.X - CircleRadius,
