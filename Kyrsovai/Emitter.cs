@@ -10,7 +10,7 @@ namespace Kyrsovai
     public class Emitter
     {
         public int X; // координата X центра эмиттера, будем ее использовать вместо MousePositionX
-        
+
         public int Y; // соответствующая координата Y
         public int Direction = 0; // вектор направления в градусах куда сыпет эмиттер
         public int Spreading = 360; // разброс частиц относительно Direction
@@ -20,14 +20,14 @@ namespace Kyrsovai
         public int RadiusMax = 10; // максимальный радиус частицы
         public int LifeMin = 20; // минимальное время жизни частицы
         public int LifeMax = 100; // максимальное время жизни частицы
-        public int ParticlesPerTick ; // количество частиц за один такт
+        public int ParticlesPerTick; // количество частиц за один такт
         public int Power = 125; //Диаметр окружности
         public float GravitationX = 0;
         public float GravitationY = 1; // пусть гравитация будет силой один пиксель за такт, нам хватит
 
         public Color ColorFrom = Color.White; // начальный цвет частицы
         public Color ColorTo = Color.FromArgb(0, Color.Black); // конечный цвет частиц
-       
+
         // собственно список, пока пустой
         List<Particle> particles = new List<Particle>();
         public List<Point> Krug = new List<Point>();// тту буду храниться круг
@@ -60,11 +60,11 @@ namespace Kyrsovai
             return particle;
         }
         // добавил функцию обновления состояния системы
-       
-        public void UpdateState()
+
+        public virtual void UpdateState()
         {
-            int particlesToCreate = ParticlesPerTick; // фиксируем счетчик сколько частиц нам создавать за тик
-           
+            var particlesToCreate = ParticlesPerTick; // фиксируем счетчик сколько частиц нам создавать за тик
+
             foreach (var particle in particles)
             {
                 if (particle.Life <= 0) // если частицы умерла
@@ -103,24 +103,12 @@ namespace Kyrsovai
             }
         }
 
-        public void Render(Graphics g)
+        public virtual void Render(Graphics g)
         {
             // утащили сюда отрисовку частиц
             foreach (var particle in particles)
             {
                 particle.Draw(g);
-            }
-            // рисую точки  красными кружочками
-            foreach (var point in Krug)
-            {
-                g.DrawEllipse(
-                    new Pen(Color.Red),
-                    // буду рисовать окружность с диаметром равным Power
-                    X - Power / 2,
-                    Y - Power / 2,
-                    Power,
-                    Power
-                );
             }
         }
     }
